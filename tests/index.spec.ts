@@ -1,5 +1,5 @@
 import index from "../src/index"
 
-describe("index", () => {
+describe("index.ts", () => {
   it("should ...", () => {})
 })

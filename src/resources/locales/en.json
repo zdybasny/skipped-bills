@@ -1,0 +1,26 @@
+{
+  "account": {
+    "sheetName": "bank transactions",
+    "headers": {
+      "shop": "shop",
+      "account": "account",
+      "status": "status",
+      "date": "date",
+      "title": "title",
+      "prise": "prise"
+    }
+  },
+  "budget": {
+    "sheetName": "bills",
+    "headers": {
+      "date": "date",
+      "no": "no",
+      "shopType": "shop type",
+      "shop": "shop",
+      "total": "total",
+      "productType": "product type",
+      "product": "product",
+      "prise": "prise"
+    }
+  }
+}

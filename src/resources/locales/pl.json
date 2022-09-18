@@ -1,0 +1,26 @@
+{
+  "account": {
+    "sheetName": "tranzakcje bankowe",
+    "headers": {
+      "shop": "sklep",
+      "account": "konto",
+      "status": "status",
+      "date": "data",
+      "title": "tytuł",
+      "prise": "cena"
+    }
+  },
+  "budget": {
+    "sheetName": "rachunki",
+    "headers": {
+      "date": "data",
+      "no": "nr",
+      "shop_type": "typ sklepu",
+      "shop": "sklep",
+      "total": "suma",
+      "productType": "typ produktu",
+      "product": "produkt",
+      "prise": "cena"
+    }
+  }
+}
