@@ -1,0 +1,7 @@
+{
+  "include": ["src/**/*"],
+  "extension": [".ts"],
+  "reporter": ["text", "json-summary"],
+  "report-dir": "./reports/coverage",
+  "temp-dir": "./reports/.nyc_output"
+}

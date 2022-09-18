@@ -1,0 +1,11 @@
+{
+  "diff": true,
+  "extension": [
+    "ts"
+  ],
+  "full-trace": true,
+  "package": "./package.json",
+  "reporter": "mochawesome",
+  "reporter-options": "reportDir=reports/unittest",
+  "require": "ts-node/register"
+}
