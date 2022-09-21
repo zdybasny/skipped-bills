@@ -1,6 +1,6 @@
 import * as XLSX from "xlsx"
 import { AccountBill, BudgetBill } from "./types"
-import { Locale } from "./locale"
+import txt from "./locale"
 
 export const readWorksheetFromXlsxFile = async <T>(
   filePath: string,
@@ -13,7 +13,7 @@ export const readWorksheetFromXlsxFile = async <T>(
 }
 
 export const mapJsonToAccountBills = (json: any): AccountBill[] => {
-  const headers = Locale.txt.account.headers
+  const headers = txt().account.headers
   return json.map((bill: any) => {
     validateAccountBill(bill)
     return {
@@ -39,7 +39,7 @@ const validateAccountBill = (bill: AccountBill): bill is AccountBill => {
 }
 
 export const mapJsonToBudgetBills = (json: any): BudgetBill[] => {
-  const headers = Locale.txt.budget.headers
+  const headers = txt().budget.headers
   return json.map((bill: any) => {
     validateBudgetBill(bill)
     return {

@@ -5,30 +5,26 @@ import addContext from "mochawesome/addContext"
 
 import * as globals from "../src/globals"
 import * as xlsx from "../src/xlsxHandler"
-import { Locale } from "../src/locale"
+import txt from "../src/locale"
 import { AccountBill, BudgetBill } from "../src/types"
 
 const mocks = {
   paths: {
     accountBills: `./tests/resources/accountBills.xlsx`,
+    budgetMissedBills: `./tests/resources/budgetMissedBills.xlsx`,
   },
-}
+} as const
 
 describe(`xlsxHandler.ts`, () => {
-  beforeEach(() => {
-    Locale.setLocale(`en`)
-  })
-
   describe(`readWorksheetFromXlsxFile()`, () => {
     it(`should return an array of given type from a xlsx file`, async function () {
       // given
       stub(globals.paths, `accountBills`).value(mocks.paths.accountBills)
 
       // when
-
       const result: any = await xlsx.readWorksheetFromXlsxFile<AccountBill>(
         globals.paths.accountBills,
-        Locale.txt.account.sheetName
+        txt().account.sheetName
       )
       addContext(this, `result:\n ${JSON.stringify(result)}`)
 

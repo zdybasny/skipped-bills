@@ -26,15 +26,20 @@ interface LanguagePack {
 }
 
 type Language = `en` | `pl`
+let language: Language = `en`
+let txt: LanguagePack | undefined
 
-export class Locale {
-  static language: Language = `pl`
-  static txt: LanguagePack = {} as LanguagePack
-
-  static setLocale = (language: Language) => {
-    Locale.language = language
-    Locale.txt = require(`./resources/locales/${Locale.language}.json`)
+export default () => {
+  if (!txt) {
+    setLocale(language)
   }
-
-  static getLocale = () => Locale.language
+  return txt
 }
+
+export const setLocale = (language: Language) => {
+  language = language
+  const newTxt = require(`./resources/locales/${language}.json`)
+  txt = newTxt
+}
+
+// TODO - Validate if loaded language implements LanguagePack interface
