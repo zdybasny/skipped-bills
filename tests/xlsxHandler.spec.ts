@@ -1,6 +1,6 @@
 import { afterEach, describe } from "mocha"
 import { expect } from "chai"
-import { stub } from "sinon"
+import Sinon, { stub } from "sinon"
 import addContext from "mochawesome/addContext"
 
 import * as globals from "../src/globals"
@@ -11,11 +11,19 @@ import { AccountBill, BudgetBill } from "../src/types"
 const mocks = {
   paths: {
     accountBills: `./tests/resources/accountBills.xlsx`,
+    budgetBills: `./tests/resources/budgetBills.xlsx`,
     budgetMissedBills: `./tests/resources/budgetMissedBills.xlsx`,
   },
 } as const
 
 describe(`xlsxHandler.ts`, () => {
+  afterEach(() => {
+    Sinon.restore()
+    globals.paths.accountBills = mocks.paths.accountBills
+    globals.paths.budgetBills = mocks.paths.budgetBills
+    globals.paths.budgetSkippedBills = mocks.paths.budgetMissedBills
+  })
+
   describe(`readWorksheetFromXlsxFile()`, () => {
     it(`should return an array of given type from a xlsx file`, async function () {
       // given

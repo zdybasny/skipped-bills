@@ -1,32 +1,27 @@
-import * as xlsx from "./xlsxHandler"
-import { AccountBill, BudgetBill } from "./types"
-import { paths } from "./globals"
-import txt, { setLocale } from "./locale"
-import { Budget } from "./Budget"
+import { setLocale } from "./locale"
+import * as globals from "./globals"
+import main from "./main"
 
-const main = async () => {
-  setLocale(`pl`)
+process.argv.forEach((val: string) => {
+  const option = val.split(`=`)
+  if (option[0] === `--help`) {
+    console.log(globals.helpDescription)
+    process.exit(0)
+  }
+  if (option[0] === `--accountBills`) {
+    globals.paths.accountBills = option[1]
+  }
+  if (option[0] === `--budgetBills`) {
+    globals.paths.budgetBills = option[1]
+  }
+  if (option[0] === `--skippedBudgetBills`) {
+    globals.paths.budgetSkippedBills = option[1]
+  }
+  if (option[0] === `--locale`) {
+    setLocale(option[1])
+  }
+})
 
-  const accountBillsJson = await xlsx.readWorksheetFromXlsxFile<AccountBill>(
-    paths.accountBills,
-    txt().account.sheetName
-  )
-  const accountBills: AccountBill[] =
-    xlsx.mapJsonToAccountBills(accountBillsJson)
+main()
 
-  let budgetBillsJson = await xlsx.readWorksheetFromXlsxFile<BudgetBill>(
-    paths.budgetBills,
-    txt().budget.sheetName
-  )
-  let budgetBills: BudgetBill[] = xlsx.mapJsonToBudgetBills(budgetBillsJson)
-
-  const budget = new Budget(accountBills, budgetBills)
-  budget.filterAccountBillsForStatus(
-    txt().account.cellValues.accountStatus.skipped
-  )
-  budget.mapAndPushAccountBillsToBudgetBills()
-
-  budgetBills = budget.getBudgetBills()
-}
-
-export default main
+export default () => {}

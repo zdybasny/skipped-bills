@@ -2,6 +2,7 @@ import txt, { setLocale } from "../src/locale"
 
 import { expect } from "chai"
 import { assert } from "console"
+import { stub } from "sinon"
 
 describe(`locale.ts`, () => {
   describe(`txt()`, () => {
@@ -31,6 +32,19 @@ describe(`locale.ts`, () => {
 
       // then
       expect(txt().account.headers.account).is.equal(`konto`)
+    })
+
+    it(`should throw error when given language is not supported`, () => {
+      // given
+      const error = stub(console, `error`)
+      const exit = stub(process, `exit`)
+
+      // when
+      setLocale(`invalid`)
+
+      // then
+      expect(error.called).is.true
+      expect(exit.called).is.true
     })
   })
 })

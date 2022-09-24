@@ -1,3 +1,5 @@
+import { defaultLanguage } from "./globals"
+
 interface LanguagePack {
   account: {
     sheetName: string
@@ -36,20 +38,25 @@ interface LanguagePack {
   }
 }
 
-type Language = `en` | `pl`
-let language: Language = `en`
 let txt: LanguagePack | undefined
 
 export default () => {
   if (!txt) {
-    setLocale(language)
+    setLocale(defaultLanguage)
   }
   return txt
 }
 
-export const setLocale = (language: Language) => {
-  language = language
-  const newTxt = require(`./resources/locales/${language}.json`)
+export const setLocale = (language: string) => {
+  let newTxt
+  try {
+    newTxt = require(`./resources/locales/${language}.json`)
+  } catch (err) {
+    console.error(
+      `Error: Cannot find language pack "${language}". Please provide a valid language pack in file ./resources/locales/${language}.json`
+    )
+    process.exit(1)
+  }
   txt = newTxt
 }
 
