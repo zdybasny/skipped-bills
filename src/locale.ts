@@ -9,6 +9,12 @@ interface LanguagePack {
       title: string
       prise: string
     }
+    cellValues: {
+      accountStatus: {
+        ok: string
+        skipped: string
+      }
+    }
   }
   budget: {
     sheetName: string
@@ -21,6 +27,11 @@ interface LanguagePack {
       productType: string
       product: string
       prise: string
+    }
+    cellValues: {
+      product: {
+        undocumentedBill: string
+      }
     }
   }
 }

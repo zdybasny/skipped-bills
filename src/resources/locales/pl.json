@@ -8,6 +8,12 @@
       "date": "data",
       "title": "tytuł",
       "prise": "cena"
+    },
+    "cellValues": {
+      "accountStatus": {
+        "ok": "ok",
+        "skipped": "POMINIĘTE"
+      }
     }
   },
   "budget": {
@@ -21,6 +27,12 @@
       "productType": "typ produktu",
       "product": "produkt",
       "prise": "cena"
+    },
+    "cellValues": {
+      "product": {
+        "undocumentedBill": "wydatki nieudokumentowane"
+      }
     }
   }
 }
+  

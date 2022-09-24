@@ -2,6 +2,7 @@ import * as xlsx from "./xlsxHandler"
 import { AccountBill, BudgetBill } from "./types"
 import { paths } from "./globals"
 import txt, { setLocale } from "./locale"
+import { Budget } from "./Budget"
 
 const main = async () => {
   setLocale(`pl`)
@@ -19,6 +20,13 @@ const main = async () => {
   )
   let budgetBills: BudgetBill[] = xlsx.mapJsonToBudgetBills(budgetBillsJson)
 
+  const budget = new Budget(accountBills, budgetBills)
+  budget.filterAccountBillsForStatus(
+    txt().account.cellValues.accountStatus.skipped
+  )
+  budget.mapAndPushAccountBillsToBudgetBills()
+
+  budgetBills = budget.getBudgetBills()
 }
 
 export default main

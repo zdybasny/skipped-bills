@@ -8,6 +8,12 @@
       "date": "date",
       "title": "title",
       "prise": "prise"
+    },
+    "cellValues": {
+      "accountStatus": {
+        "ok": "ok",
+        "skipped": "SKIPPED"
+      }
     }
   },
   "budget": {
@@ -21,6 +27,11 @@
       "productType": "product type",
       "product": "product",
       "prise": "prise"
+    },
+    "cellValues": {
+      "product": {
+        "undocumentedBill": "undocumented bill"
+      }
     }
   }
 }
