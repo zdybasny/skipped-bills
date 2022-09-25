@@ -47,13 +47,15 @@ describe(`Budget.ts`, () => {
       expect(result[0].date).to.equal(accountBills[0].date)
     })
 
-    it(`should set "no" of new budget bills to the next one in the same date`, () => {
+    it(`should set "no" of new budget bills to the next one in the same date`, function () {
       // given
 
       // when
       const newBudgetBills = budget.mapAccountBillsToBudgetBills()
 
       // then
+      addContext(this, `newBudgetBills:\n${JSON.stringify(newBudgetBills)}`)
+
       const assertBillNumbers = (newBillIndex: number, expectNo: number) => {
         const failureMessage = `Expected: "${expectNo}" for: ${JSON.stringify(
           newBudgetBills[newBillIndex]

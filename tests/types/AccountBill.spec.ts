@@ -34,35 +34,31 @@ describe(`AccountBill.ts`, () => {
     it(`should return BudgetBill[] with date of elements converted from some string format into Date()`, async function () {
       // given
       input = mocks.accountBillsJson()
-      const expectedDate = `2022-01-02T00:00:00.000Z`
+      const expectedDate = new Date(Date.UTC(2022, 0, 2, 0, 0, 0, 0))
 
       // when
       result = mapJsonToAccountBills(input)
 
       // then
-      expect(result[0].date.toISOString()).to.equal(expectedDate)
+      expect((result[0].date as Date).toUTCString()).to.equal(
+        expectedDate.toUTCString()
+      )
     })
 
     it(`should return AccountBill[] with date of elements converted from Excel 5digit format into Date()`, async function () {
       // given // 2022-01-02T00:00:00.000Z
       input = mocks.accountBillsJson()
-      const expectedDate = `2022-01-03T00:00:00.000Z`
+      const expectedDate = new Date(Date.UTC(2022, 0, 4, 0, 0, 0, 0))
 
       // when
       result = mapJsonToAccountBills(input)
 
       // then
-      const date = offsetDate(result[2].date)
-      console.log(`OFFSET: ${date}`)
-
-      expect(result[2].date.toISOString()).to.equal(expectedDate)
+      expect((result[2].date as Date).toUTCString()).to.equal(
+        expectedDate.toUTCString()
+      )
     })
 
-    const offsetDate = (date: Date) => {
-      const offset = date.getTimezoneOffset()
-      date = new Date(date.getTime() - offset * 60 * 1000)
-      return date.toISOString().split("T")[0]
-    }
     it(`should return an AccountBill with allowed empty fields`, function () {
       // given
       input = [

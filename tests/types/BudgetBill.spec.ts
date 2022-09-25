@@ -38,13 +38,13 @@ describe(`BudgetBill.ts`, () => {
     it(`should return BudgetBill[] with date of elements converted from Excel 5digit format into Date()`, async function () {
       // given
       input = mocks.budgetBillsJson()
-      const expectedDate = `2022-01-01T00:00:00.000Z`
+      const expectedDate = new Date(Date.UTC(2022, 0, 2, 0, 0, 0, 0))
 
       // when
       result = mapJsonToBudgetBills(input)
 
       // then
-      expect(result[0].date.toISOString()).to.equal(expectedDate)
+      expect(result[0].date.toUTCString()).to.equal(expectedDate.toUTCString())
     })
 
     it(`should return an BudgetBill with allowed empty fields`, function () {

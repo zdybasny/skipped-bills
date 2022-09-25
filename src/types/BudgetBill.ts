@@ -56,17 +56,9 @@ const isValidBudgetBill = (bill: any): boolean => {
 
 const convertDate = (excelDate: number): Date => {
   // https://stackoverflow.com/a/72000349
-  const excelEpoc = new Date(1900, 0, -1).getTime()
+  const excelEpoc = new Date(Date.UTC(1900, 0, -1)).getTime()
   const msDay = 86400000
   let date = new Date(excelEpoc + excelDate * msDay)
-  console.log(`UTC: ${date.toUTCString()}`)
-  console.log(`ISO: ${date.toISOString()}`)
-  console.log(
-    `string: ${date.toDateString()}`
-  )
-
-  const yyyy_mm_dd = new Date(excelEpoc + excelDate * msDay)
-    .toISOString()
-    .split("T")[0]
-  return new Date(yyyy_mm_dd)
+  date.setUTCHours(0, 0, 0, 0)
+  return date
 }

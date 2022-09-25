@@ -23,7 +23,7 @@ export class Budget {
         shop: accountRecord.shop,
         product: txt().budget.cellValues.product.undocumentedBill,
         prise: accountRecord.prise,
-        comment: new Date().toISOString().slice(0, 10),
+        comment: new Date().toISOString().split("T")[0],
       } as BudgetBill
       this.budgetBills.push(bill)
       return bill
@@ -32,9 +32,7 @@ export class Budget {
 
   private findBudgetBillsLastNoForDate = (date: Date): number => {
     let records = this.budgetBills.filter(
-      (record: BudgetBill) =>
-        record.date.toISOString().slice(0, 10) ===
-        date.toISOString().slice(0, 10)
+      (record: BudgetBill) => record.date.toISOString() === date.toISOString()
     )
 
     if (records.length === 0) {

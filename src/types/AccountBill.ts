@@ -47,15 +47,14 @@ const validateBill = (bill: any, requiredFields: string[]) => {
   }
 }
 
-const convertDate = (date: number | string): Date => {
-  if (typeof date === "number") {
+const convertDate = (excelDate: number | string): Date => {
+  if (typeof excelDate === "number") {
     // https://stackoverflow.com/a/72000349
-    const excelEpoc = new Date(1900, 0, -1).getTime()
+    const excelEpoc = new Date(Date.UTC(1900, 0, -1)).getTime()
     const msDay = 86400000
-    const yyyy_mm_dd = new Date(excelEpoc + date * msDay)
-      .toISOString()
-      .split("T")[0]
-    return new Date(yyyy_mm_dd)
+    const date = new Date(excelEpoc + excelDate * msDay)
+    date.setUTCHours(0, 0, 0, 0)
+    return date
   }
-  return new Date(date)
+  return new Date(excelDate)
 }
