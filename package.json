@@ -5,7 +5,8 @@
   "scripts": {
     "test": "nyc mocha --recursive tests",
     "ncc": "ncc build dist/src/index.js -o dist",
-    "build": "tsc && cp -fr ./src/resources ./dist && npm run ncc"
+    "build-ncc": "tsc && cp -fr ./src/resources ./dist && npm run ncc",
+    "build": "tsc && cp -fr ./src/resources ./dist/src"
   },
   "devDependencies": {
     "@types/chai": "^4.3.1",

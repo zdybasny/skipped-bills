@@ -1,55 +1,216 @@
-import { AccountBill, BudgetBill } from "../../../src/types"
+import AccountBill from "../../../src/types/AccountBill"
+import BudgetBill from "../../../src/types/BudgetBill"
 
-export const accountBills = (): AccountBill[] => {
+export const paths = {
+  accountBills: `./tests/resources/xlsx/accountBills.xlsx`,
+  budgetBills: `./tests/resources/xlsx/budgetBills.xlsx`,
+  budgetMissedBills: `./tests/resources/xlsx/budgetMissedBills.xlsx`,
+} as const
+
+export const accountBillsJson = (): any[] => {
   return [
     {
-      shop: `no:1`,
-      status: `ok`,
-      date: `2022-03-22`,
-      title: `should be omitted by a filter`,
-      prise: 25,
+      Shop: "abc",
+      Account: "account A",
+      Status: "ok",
+      Date: "2022-01-02",
+      "Transaction type": "Card payment",
+      Prise: -20.48,
+      Currency: "PLN",
+      Title: "Title: 0090729",
     },
     {
-      shop: `no:2`,
-      status: `SKIPPED`,
-      date: `2022-03-28`,
-      title: `should be added to budget bills with no:2`,
-      prise: 12.5,
+      Shop: "abc",
+      Account: "account A",
+      Status: "SKIPPED",
+      Date: "2022-01-02",
+      "Transaction type": "Card payment",
+      Prise: -3.49,
+      Currency: "PLN",
+      Title: "Title: 0090744",
+    },
+    {
+      Shop: "little shop",
+      Account: "account B",
+      Status: "SKIPPED",
+      Date: 44565,
+      "Transaction type": "Card payment",
+      Prise: -71.58,
+      Currency: "PLN",
+      Title: "Title: 00091840",
     },
   ]
 }
 
+export const accountBills = (): AccountBill[] => {
+  return [
+    {
+      date: new Date("2022-01-02T00:00:00.000Z"),
+      prise: 20.48,
+      title: "Title: 0090729",
+      status: "ok",
+      shop: "abc",
+    },
+    {
+      date: new Date("2022-01-02T00:00:00.000Z"),
+      prise: 3.49,
+      title: "Title: 0090744",
+      status: "SKIPPED",
+      shop: "abc",
+    },
+    {
+      date: new Date(`2022-01-04`),
+      prise: 71.58,
+      title: "Title: 00091840",
+      status: "SKIPPED",
+      shop: "little shop",
+    },
+  ]
+}
+
+// Given by xlsxHandler.readWorksheetFromXlsxFile()
+// from ./tests/resources/budgetBills.xlsx
+export const budgetBillsJson = (): any[] => {
+  return [
+    {
+      date: 44563,
+      no: 1,
+      "shop type": "supermaket",
+      shop: "abc",
+      total: 29.950000000000003,
+      "product type": "-",
+      product: "food",
+      prise: 7.98,
+    },
+    {
+      date: 44563,
+      no: 1,
+      "shop type": "supermaket",
+      shop: "abc",
+      total: 29.950000000000003,
+      "product type": "-",
+      product: "food",
+      prise: 9.98,
+    },
+    {
+      date: 44563,
+      no: 1,
+      "shop type": "supermaket",
+      shop: "abc",
+      total: 29.950000000000003,
+      "product type": "-",
+      product: "hausewares",
+      prise: 11.99,
+    },
+    {
+      date: 44564,
+      no: 1,
+      "shop type": "bank",
+      shop: "the bank",
+      total: 300,
+      "product type": "CC",
+      product: "student loan",
+      prise: 300,
+    },
+    {
+      date: 44564,
+      no: 2,
+      "shop type": "bank",
+      shop: "the bank",
+      total: 9.03,
+      "product type": "CC",
+      product: "student loan interest",
+      prise: 9.03,
+    },
+    {
+      date: 44564,
+      no: 3,
+      "shop type": "mechanic",
+      shop: "new old car",
+      total: 250,
+      "product type": "NR",
+      product: "car service",
+      prise: 250,
+    },
+    {
+      date: 44565,
+      no: 1,
+      "shop type": "load",
+      shop: "adam",
+      total: -378.12,
+      "product type": "NR",
+      product: "personal loan",
+      prise: -378.12,
+    },
+  ]
+}
+
+// Given by xlsxHandler.readWorksheetFromXlsxFile() and BudgetBill.mapJsonToBudgetBills()
+// from ./tests/resources/budgetBills.xlsx
 export const budgetBills = (): BudgetBill[] => {
   return [
     {
-      date: "2022-03-24",
+      date: new Date("2022-01-01T00:00:00.000Z"),
       no: 1,
-      shop_type: "shop type 1",
-      shop: "shop 1",
-      total: 25,
-      productType: "product type 1",
-      product: "product 1",
-      prise: 25,
+      shop: "abc",
+      total: 29.950000000000003,
+      productType: "-",
+      product: "food",
+      prise: 7.98,
     },
     {
-      date: "2022-03-28",
+      date: new Date("2022-01-01T00:00:00.000Z"),
       no: 1,
-      shop_type: "shop type 2",
-      shop: "shop 2",
-      total: 75.5,
-      productType: "product type 2",
-      product: "product 2",
-      prise: 50,
+      shop: "abc",
+      total: 29.950000000000003,
+      productType: "-",
+      product: "food",
+      prise: 9.98,
     },
     {
-      date: "2022-03-28",
+      date: new Date("2022-01-01T00:00:00.000Z"),
       no: 1,
-      shop_type: "shop type 2",
-      shop: "shop 2",
-      total: 75.5,
-      productType: "product type 2",
-      product: "product 3",
-      prise: 12.5,
+      shop: "abc",
+      total: 29.950000000000003,
+      productType: "-",
+      product: "hausewares",
+      prise: 11.99,
+    },
+    {
+      date: new Date("2022-01-02T00:00:00.000Z"),
+      no: 1,
+      shop: "the bank",
+      total: 300,
+      productType: "CC",
+      product: "student loan",
+      prise: 300,
+    },
+    {
+      date: new Date("2022-01-02T00:00:00.000Z"),
+      no: 2,
+      shop: "the bank",
+      total: 9.03,
+      productType: "CC",
+      product: "student loan interest",
+      prise: 9.03,
+    },
+    {
+      date: new Date("2022-01-02T00:00:00.000Z"),
+      no: 3,
+      shop: "new old car",
+      total: 250,
+      productType: "NR",
+      product: "car service",
+      prise: 250,
+    },
+    {
+      date: new Date("2022-01-03T00:00:00.000Z"),
+      no: 1,
+      shop: "adam",
+      total: -378.12,
+      productType: "NR",
+      product: "personal loan",
+      prise: -378.12,
     },
   ]
 }

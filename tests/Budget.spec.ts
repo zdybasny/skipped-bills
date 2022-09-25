@@ -1,19 +1,21 @@
 import { Budget } from "../src/Budget"
 
 import txt from "../src/locale"
-import { AccountBill, BudgetBill } from "../src/types"
+import AccountBill from "../src/types/AccountBill"
+import BudgetBill from "../src/types/BudgetBill"
 
 import { afterEach, describe } from "mocha"
-import { expect } from "chai"
+import { assert, expect } from "chai"
 import { stub } from "sinon"
 import addContext from "mochawesome/addContext"
 import * as mocks from "./resources/mocks/mocks"
-import { assert } from "console"
 
 let budget: Budget
 describe(`Budget.ts`, () => {
-  beforeEach(() => {
+  beforeEach(function () {
     budget = new Budget(mocks.accountBills(), mocks.budgetBills())
+    addContext(this, `accountBills:\n${JSON.stringify(mocks.accountBills())}`)
+    addContext(this, `budgetBills:\n${JSON.stringify(mocks.budgetBills())}`)
   })
 
   describe(`filterAccountBillsForStatus`, () => {
@@ -28,33 +30,41 @@ describe(`Budget.ts`, () => {
 
       // then
       const accountBills = budget["accountBills"]
-      expect(accountBills.length).to.equal(1)
+      expect(accountBills.length).to.equal(2)
     })
   })
 
-  describe(`mapAndPushAccountBillsToBudgetBills()`, () => {
+  describe(`mapAccountBillsToBudgetBills()`, () => {
     it(`should map account bills to budget bills`, () => {
       // given
-      assert(budget[`accountBills`]?.length === 2)
-      assert(budget.getBudgetBills()?.length === 3)
+      const accountBills: AccountBill[] = budget["accountBills"]
 
       // when
-      budget.mapAndPushAccountBillsToBudgetBills()
+      const result: BudgetBill[] = budget.mapAccountBillsToBudgetBills()
 
       // then
-      const newBudgetBills = budget.getBudgetBills()
-      expect(newBudgetBills.length).to.equal(5)
+      expect(result.length).to.equal(accountBills.length)
+      expect(result[0].date).to.equal(accountBills[0].date)
     })
+
     it(`should set "no" of new budget bills to the next one in the same date`, () => {
       // given
 
       // when
-      budget.mapAndPushAccountBillsToBudgetBills()
+      const newBudgetBills = budget.mapAccountBillsToBudgetBills()
 
       // then
-      const newBudgetBills = budget.getBudgetBills()
-      expect(newBudgetBills.find((bill) => bill.shop === `no:1`).no).to.equal(1)
-      expect(newBudgetBills.find((bill) => bill.shop === `no:2`).no).to.equal(2)
+      const assertBillNumbers = (newBillIndex: number, expectNo: number) => {
+        const failureMessage = `Expected: "${expectNo}" for: ${JSON.stringify(
+          newBudgetBills[newBillIndex]
+        )}`
+        expect(newBudgetBills[newBillIndex].no, failureMessage).to.equal(
+          expectNo
+        )
+      }
+      assertBillNumbers(0, 4)
+      assertBillNumbers(1, 5)
+      assertBillNumbers(2, 1)
     })
   })
 })

@@ -13,7 +13,7 @@ describe(`locale.ts`, () => {
       const result = txt()
 
       // then
-      expect(result.account.headers.account).is.equal(`account`)
+      expect(result.account.headers.account).is.equal(`Account`)
     })
   })
 
@@ -24,27 +24,24 @@ describe(`locale.ts`, () => {
 
     it(`should reload locale for given language`, () => {
       // given
-      assert(txt().account.headers.account === `account`)
+      assert(txt().budget.headers.no === `no`)
 
       // when
       setLocale(`pl`)
       const result = txt()
 
       // then
-      expect(txt().account.headers.account).is.equal(`konto`)
+      expect(txt().budget.headers.no).is.equal(`l.p.`)
     })
 
     it(`should throw error when given language is not supported`, () => {
       // given
-      const error = stub(console, `error`)
-      const exit = stub(process, `exit`)
 
       // when
-      setLocale(`invalid`)
+      const call = () => setLocale(`invalid`)
 
       // then
-      expect(error.called).is.true
-      expect(exit.called).is.true
+      expect(call).to.throw()
     })
   })
 })

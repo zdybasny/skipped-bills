@@ -1,4 +1,5 @@
-import { AccountBill, BudgetBill } from "./types"
+import AccountBill from "./types/AccountBill"
+import BudgetBill from "./types/BudgetBill"
 import txt from "./locale"
 
 export class Budget {
@@ -7,37 +8,33 @@ export class Budget {
     private budgetBills: BudgetBill[]
   ) {}
 
-  getBudgetBills(): BudgetBill[] {
-    return this.budgetBills
-  }
-
   filterAccountBillsForStatus = (status: string) => {
     this.accountBills = this.accountBills.filter((item: any) => {
       return item.status === status
     })
   }
 
-  mapAndPushAccountBillsToBudgetBills = () => {
-    const newBudgetBills = this.mapAccountBillsToBudgetBills()
-    this.budgetBills = this.budgetBills.concat(newBudgetBills)
-  }
-
-  private mapAccountBillsToBudgetBills = (): BudgetBill[] => {
+  mapAccountBillsToBudgetBills = (): BudgetBill[] => {
     return this.accountBills.map((accountRecord: AccountBill) => {
-      return {
+      const bill = {
         date: accountRecord.date,
         no: this.findBudgetBillsLastNoForDate(accountRecord.date) + 1,
         // pointType: accountRecord[`point type`],
         shop: accountRecord.shop,
         product: txt().budget.cellValues.product.undocumentedBill,
         prise: accountRecord.prise,
+        comment: new Date().toISOString().slice(0, 10),
       } as BudgetBill
+      this.budgetBills.push(bill)
+      return bill
     })
   }
 
-  private findBudgetBillsLastNoForDate = (date: string): number => {
+  private findBudgetBillsLastNoForDate = (date: Date): number => {
     let records = this.budgetBills.filter(
-      (record: BudgetBill) => record.date === date
+      (record: BudgetBill) =>
+        record.date.toISOString().slice(0, 10) ===
+        date.toISOString().slice(0, 10)
     )
 
     if (records.length === 0) {

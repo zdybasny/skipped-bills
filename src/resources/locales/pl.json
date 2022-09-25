@@ -2,17 +2,17 @@
   "account": {
     "sheetName": "tranzakcje bankowe",
     "headers": {
-      "shop": "sklep",
-      "account": "konto",
-      "status": "status",
-      "date": "data",
+      "shop": "Sklep",
+      "account": "Konto",
+      "status": "Status",
+      "date": "Data waluty",
       "title": "tytuł",
-      "prise": "cena"
+      "prise": "Kwota"
     },
     "cellValues": {
       "accountStatus": {
         "ok": "ok",
-        "skipped": "POMINIĘTE"
+        "skipped": "SKIPPED"
       }
     }
   },
@@ -20,13 +20,14 @@
     "sheetName": "rachunki",
     "headers": {
       "date": "data",
-      "no": "nr",
+      "no": "l.p.",
       "shop_type": "typ sklepu",
       "shop": "sklep",
       "total": "suma",
-      "productType": "typ produktu",
+      "productType": "typ",
       "product": "produkt",
-      "prise": "cena"
+      "prise": "cena",
+      "comment": "komentarz"
     },
     "cellValues": {
       "product": {
@@ -35,4 +36,3 @@
     }
   }
 }
-  

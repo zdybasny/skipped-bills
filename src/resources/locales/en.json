@@ -1,13 +1,13 @@
 {
   "account": {
-    "sheetName": "bank transactions",
+    "sheetName": "Transactions",
     "headers": {
-      "shop": "shop",
-      "account": "account",
-      "status": "status",
-      "date": "date",
-      "title": "title",
-      "prise": "prise"
+      "shop": "Shop",
+      "account": "Account",
+      "status": "Status",
+      "date": "Date",
+      "title": "Title",
+      "prise": "Prise"
     },
     "cellValues": {
       "accountStatus": {
@@ -26,7 +26,8 @@
       "total": "total",
       "productType": "product type",
       "product": "product",
-      "prise": "prise"
+      "prise": "prise",
+      "comment": "comment"
     },
     "cellValues": {
       "product": {
