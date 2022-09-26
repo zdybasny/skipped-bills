@@ -48,7 +48,7 @@ describe(`AccountBill.ts`, () => {
     it(`should return AccountBill[] with date of elements converted from Excel 5digit format into Date()`, async function () {
       // given // 2022-01-02T00:00:00.000Z
       input = mocks.accountBillsJson()
-      const expectedDate = new Date(Date.UTC(2022, 0, 4, 0, 0, 0, 0))
+      const expectedDate = new Date(Date.UTC(2022, 0, 5, 0, 0, 0, 0))
 
       // when
       result = mapJsonToAccountBills(input)

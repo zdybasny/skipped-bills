@@ -33,7 +33,7 @@ export const accountBillsJson = (): any[] => {
       Shop: "little shop",
       Account: "account B",
       Status: "SKIPPED",
-      Date: 44565,
+      Date: 44566,
       "Transaction type": "Card payment",
       Prise: -71.58,
       Currency: "PLN",
@@ -59,7 +59,7 @@ export const accountBills = (): AccountBill[] => {
       shop: "abc",
     },
     {
-      date: new Date(`2022-01-04`),
+      date: new Date(`2022-01-05`),
       prise: 71.58,
       title: "Title: 00091840",
       status: "SKIPPED",
@@ -135,7 +135,7 @@ export const budgetBillsJson = (): any[] => {
     {
       date: 44565,
       no: 1,
-      "shop type": "load",
+      "shop type": "loan",
       shop: "adam",
       total: -378.12,
       "product type": "NR",
@@ -150,8 +150,9 @@ export const budgetBillsJson = (): any[] => {
 export const budgetBills = (): BudgetBill[] => {
   return [
     {
-      date: new Date("2022-01-01T00:00:00.000Z"),
+      date: new Date("2022-01-02T00:00:00.000Z"),
       no: 1,
+      shopType: "supermaket",
       shop: "abc",
       total: 29.950000000000003,
       productType: "-",
@@ -159,8 +160,9 @@ export const budgetBills = (): BudgetBill[] => {
       prise: 7.98,
     },
     {
-      date: new Date("2022-01-01T00:00:00.000Z"),
+      date: new Date("2022-01-02T00:00:00.000Z"),
       no: 1,
+      shopType: "supermaket",
       shop: "abc",
       total: 29.950000000000003,
       productType: "-",
@@ -168,8 +170,9 @@ export const budgetBills = (): BudgetBill[] => {
       prise: 9.98,
     },
     {
-      date: new Date("2022-01-01T00:00:00.000Z"),
+      date: new Date("2022-01-02T00:00:00.000Z"),
       no: 1,
+      shopType: "supermaket",
       shop: "abc",
       total: 29.950000000000003,
       productType: "-",
@@ -177,8 +180,9 @@ export const budgetBills = (): BudgetBill[] => {
       prise: 11.99,
     },
     {
-      date: new Date("2022-01-02T00:00:00.000Z"),
+      date: new Date("2022-01-03T00:00:00.000Z"),
       no: 1,
+      shopType: "bank",
       shop: "the bank",
       total: 300,
       productType: "CC",
@@ -186,8 +190,9 @@ export const budgetBills = (): BudgetBill[] => {
       prise: 300,
     },
     {
-      date: new Date("2022-01-02T00:00:00.000Z"),
+      date: new Date("2022-01-03T00:00:00.000Z"),
       no: 2,
+      shopType: "bank",
       shop: "the bank",
       total: 9.03,
       productType: "CC",
@@ -195,7 +200,7 @@ export const budgetBills = (): BudgetBill[] => {
       prise: 9.03,
     },
     {
-      date: new Date("2022-01-02T00:00:00.000Z"),
+      date: new Date("2022-01-03T00:00:00.000Z"),
       no: 3,
       shop: "new old car",
       total: 250,
@@ -204,8 +209,9 @@ export const budgetBills = (): BudgetBill[] => {
       prise: 250,
     },
     {
-      date: new Date("2022-01-03T00:00:00.000Z"),
+      date: new Date("2022-01-04T00:00:00.000Z"),
       no: 1,
+      shopType: "loan",
       shop: "adam",
       total: -378.12,
       productType: "NR",

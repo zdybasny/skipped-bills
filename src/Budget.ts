@@ -23,7 +23,7 @@ export class Budget {
         shop: accountRecord.shop,
         product: txt().budget.cellValues.product.undocumentedBill,
         prise: accountRecord.prise,
-        comment: new Date().toISOString().split("T")[0],
+        comment: accountRecord.title,
       } as BudgetBill
       this.budgetBills.push(bill)
       return bill

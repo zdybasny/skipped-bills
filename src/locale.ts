@@ -1,5 +1,5 @@
 import { defaultLanguage } from "./globals"
-import { LanguagePack } from "./types"
+import { LanguagePack } from "./types/LanguagePack"
 
 let txt: LanguagePack | undefined
 

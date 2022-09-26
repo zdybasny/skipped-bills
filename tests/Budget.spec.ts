@@ -64,8 +64,8 @@ describe(`Budget.ts`, () => {
           expectNo
         )
       }
-      assertBillNumbers(0, 4)
-      assertBillNumbers(1, 5)
+      assertBillNumbers(0, 2)
+      assertBillNumbers(1, 3)
       assertBillNumbers(2, 1)
     })
   })

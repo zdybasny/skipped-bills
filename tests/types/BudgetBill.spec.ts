@@ -108,13 +108,14 @@ describe(`BudgetBill.ts`, () => {
 
     it(`should map BudgetBill[] to json with headers translated by Locale`, () => {
       // given
-      input = mocks.budgetBillsJson()
+      input = mocks.budgetBills()
 
       // when
       result = mapBudgetBillsToJson(input)
 
       // then
       expect(result[0][`product type`]).to.equal(input[0].productType)
+      expect(result[0].date).to.equal(mocks.budgetBillsJson()[0].date)
     })
   })
 })

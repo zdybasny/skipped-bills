@@ -18,7 +18,7 @@ export const mapJsonToBudgetBills = (json: any): BudgetBill[] => {
   const headers = txt().budget.headers
   return json.map((bill: any) => {
     const budgetBill: BudgetBill = {
-      date: convertDate(bill[headers.date]),
+      date: convertExcelDateNumberToDate(bill[headers.date]),
       no: bill[headers.no],
       shopType: bill[headers.shop_type],
       shop: bill[headers.shop],
@@ -36,7 +36,9 @@ export const mapBudgetBillsToJson = (bills: BudgetBill[]): any[] => {
   const headers = txt().budget.headers
   return bills.map((bill) => {
     const jsonBill: any = {}
-    jsonBill[headers.date] = bill.date
+    const date: Date = bill.date
+
+    jsonBill[headers.date] = convertDateToExcelDateNumber(date)
     jsonBill[headers.no] = bill.no
     jsonBill[headers.shop_type] = bill.shopType
     jsonBill[headers.shop] = bill.shop
@@ -54,11 +56,18 @@ const isValidBudgetBill = (bill: any): boolean => {
   return bill[headers.date] && bill[headers.no] && bill[headers.total]
 }
 
-const convertDate = (excelDate: number): Date => {
+const convertExcelDateNumberToDate = (excelDate: number): Date => {
   // https://stackoverflow.com/a/72000349
   const excelEpoc = new Date(Date.UTC(1900, 0, -1)).getTime()
   const msDay = 86400000
   let date = new Date(excelEpoc + excelDate * msDay)
   date.setUTCHours(0, 0, 0, 0)
   return date
+}
+
+const convertDateToExcelDateNumber = (date: Date): number => {
+  const excelEpoc = new Date(Date.UTC(1900, 0, -1)).getTime()
+  const msDay = 86400000
+  const time = new Date(date).getTime()
+  return (time - excelEpoc) / msDay
 }

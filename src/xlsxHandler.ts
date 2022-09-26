@@ -22,9 +22,7 @@ export const writeBudgetSkippedBillsToXlsx = async (
   const workSheetName = `skippedBills_${yyyy_mm_dd}_`
   console.log(`workSheetName: ${workSheetName}`)
 
-  const workSheet = XLSX.utils.json_to_sheet(records, {
-    dateNF: "yyyy-mm-dd",
-  })
+  const workSheet = XLSX.utils.json_to_sheet(records)
   const workBook = XLSX.utils.book_new()
   XLSX.utils.book_append_sheet(workBook, workSheet, workSheetName, true)
   XLSX.writeFile(workBook, path, { WTF: true })
