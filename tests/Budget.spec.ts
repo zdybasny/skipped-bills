@@ -14,23 +14,24 @@ let budget: Budget
 describe(`Budget.ts`, () => {
   beforeEach(function () {
     budget = new Budget(mocks.accountBills(), mocks.budgetBills())
-    addContext(this, `accountBills:\n${JSON.stringify(mocks.accountBills())}`)
-    addContext(this, `budgetBills:\n${JSON.stringify(mocks.budgetBills())}`)
+  })
+  afterEach(function () {
+    addContext(this, `accountBills:\n${JSON.stringify(budget[`accountBills`])}`)
+    addContext(this, `budgetBills:\n${JSON.stringify(budget[`budgetBills`])}`)
   })
 
-  describe(`filterAccountBillsForStatus`, () => {
-    it(`should filter budget.accountBills for "${
-      txt().account.cellValues.accountStatus.skipped
-    }"`, () => {
+  describe(`filterAccountBillsNotInBudgetBills()`, () => {
+    it(`should filter only bill not duplicated in account and budget sets`, () => {
       // given
-      const status = txt().account.cellValues.accountStatus.skipped
 
       // when
-      budget.filterAccountBillsForStatus(status)
+      budget.filterAccountBillsNotInBudgetBills()
 
       // then
       const accountBills = budget["accountBills"]
       expect(accountBills.length).to.equal(2)
+      expect(accountBills[0].title).not.to.equal(`Title: 0090744`)
+      expect(accountBills[1].title).not.to.equal(`Title: 0090744`)
     })
   })
 

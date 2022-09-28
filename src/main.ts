@@ -17,7 +17,7 @@ const main = async () => {
     txt().account.sheetName
   )
   const accountBills: AccountBill[] = mapJsonToAccountBills(accountBillsJson)
-  console.log(`\nCount of account bills: ${accountBills.length}`)
+  console.log(`\nCount of account bills the file: ${accountBills.length}`)
   writeToJson(paths.accountBills, accountBills)
 
   let budgetBillsJson = await xlsx.readWorksheetFromXlsxFile(
@@ -25,13 +25,24 @@ const main = async () => {
     txt().budget.sheetName
   )
   let budgetBills: BudgetBill[] = mapJsonToBudgetBills(budgetBillsJson)
-  console.log(`\nCount of account bills: ${budgetBills.length}`)
+  console.log(`\nCount of budget bills in the file: ${budgetBills.length}`)
   writeToJson(paths.budgetBills, budgetBills)
 
   const budget = new Budget(accountBills, budgetBills)
-  budget.filterAccountBillsForStatus(
-    txt().account.cellValues.accountStatus.skipped
+
+  const start = new Date().getTime()
+
+  // Run some code..
+
+  // budget.filterDuplicatedBudgetBills()
+  console.log(
+    `\nCount of unique budget bills: ${budget[`accountBills`].length}`
   )
+  // writeToJson(`${paths.budgetBills}.unique`, budget[`accountBills`])
+
+  budget.filterAccountBillsNotInBudgetBills()
+  let elapsed = new Date().getTime() - start
+  console.log(`\nXXXX: Elapsed time: ${elapsed} ms`)
   console.log(`\nCount of missed bills: ${budget[`accountBills`].length}`)
   writeToJson(`${paths.accountBills}.filtered`, budget[`accountBills`])
 

@@ -4,16 +4,9 @@
     "headers": {
       "shop": "Shop",
       "account": "Account",
-      "status": "Status",
       "date": "Date",
       "title": "Title",
-      "prise": "Prise"
-    },
-    "cellValues": {
-      "accountStatus": {
-        "ok": "ok",
-        "skipped": "SKIPPED"
-      }
+      "amount": "Amount"
     }
   },
   "budget": {
@@ -26,7 +19,7 @@
       "total": "total",
       "productType": "product type",
       "product": "product",
-      "prise": "prise",
+      "amount": "amount",
       "comment": "comment"
     },
     "cellValues": {

@@ -54,6 +54,7 @@ describe(`BudgetBill.ts`, () => {
           date: 44563,
           no: 1,
           total: 29.950000000000003,
+          amount: 7.98,
         },
       ]
 
@@ -65,19 +66,23 @@ describe(`BudgetBill.ts`, () => {
       expect(result[0].shop).to.undefined
       expect(result[0].productType).to.undefined
       expect(result[0].product).to.undefined
-      expect(result[0].prise).to.undefined
       expect(result[0].comment).to.undefined
     })
 
-    it(`should skip a record if it does not contain "date" and "no" values`, () => {
-      // given
-      input = [{ prise: 25, comment: `invalid` }]
+    describe(`should skip a record if it does not contain:`, () => {
+      ;[`date`, `no`, `amount`, `total`].forEach((field) => {
+        it(`"${field}" value`, () => {
+          // given
+          input = [mocks.budgetBillsJson()[0]]
+          input[0][field] = undefined
 
-      // when
-      result = mapJsonToBudgetBills(input)
+          // when
+          result = mapJsonToBudgetBills(input)
 
-      // then
-      expect(result).to.empty
+          // then
+          expect(result).to.empty
+        })
+      })
     })
 
     it(`should map json to BudgetBill[] with headers translated by Locale`, () => {

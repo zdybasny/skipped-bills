@@ -4,16 +4,9 @@ export interface LanguagePack {
     headers: {
       shop: string
       account: string
-      status: string
       date: string
       title: string
-      prise: string
-    }
-    cellValues: {
-      accountStatus: {
-        ok: string
-        skipped: string
-      }
+      amount: string
     }
   }
   budget: {
@@ -26,7 +19,7 @@ export interface LanguagePack {
       total: string
       productType: string
       product: string
-      prise: string
+      amount: string
       comment: string
     }
     cellValues: {

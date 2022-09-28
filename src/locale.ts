@@ -20,7 +20,7 @@ export const setLocale = (language: string) => {
     )
   }
   txt = newTxt
-  console.log(`Using locale: ${JSON.stringify(txt)}`)
 }
 
 // TODO - Validate if loaded language implements LanguagePack interface
+// https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings

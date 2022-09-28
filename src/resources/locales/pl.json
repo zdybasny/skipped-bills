@@ -4,16 +4,9 @@
     "headers": {
       "shop": "Sklep",
       "account": "Konto",
-      "status": "Status",
       "date": "Data waluty",
       "title": "tytuł",
-      "prise": "Kwota"
-    },
-    "cellValues": {
-      "accountStatus": {
-        "ok": "ok",
-        "skipped": "SKIPPED"
-      }
+      "amount": "Kwota"
     }
   },
   "budget": {
@@ -26,7 +19,7 @@
       "total": "suma",
       "productType": "typ",
       "product": "produkt",
-      "prise": "cena",
+      "amount": "kwota",
       "comment": "komentarz"
     },
     "cellValues": {

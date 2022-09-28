@@ -8,10 +8,18 @@ export class Budget {
     private budgetBills: BudgetBill[]
   ) {}
 
-  filterAccountBillsForStatus = (status: string) => {
-    this.accountBills = this.accountBills.filter((item: any) => {
-      return item.status === status
+  filterAccountBillsNotInBudgetBills = () => {
+    const accountBills = this.accountBills
+    const accountBillsFiltered = accountBills.filter((accountBill) => {
+      const isInBudgetBills = this.budgetBills.some((budgetBill) => {
+        const check =
+          budgetBill.date.toISOString() === accountBill.date.toISOString() &&
+          Math.round(budgetBill.total) === Math.round(accountBill.amount)
+        return check
+      })
+      return !isInBudgetBills
     })
+    this.accountBills = accountBillsFiltered
   }
 
   mapAccountBillsToBudgetBills = (): BudgetBill[] => {
@@ -22,7 +30,7 @@ export class Budget {
         // pointType: accountRecord[`point type`],
         shop: accountRecord.shop,
         product: txt().budget.cellValues.product.undocumentedBill,
-        prise: accountRecord.prise,
+        amount: accountRecord.amount,
         comment: accountRecord.title,
       } as BudgetBill
       this.budgetBills.push(bill)

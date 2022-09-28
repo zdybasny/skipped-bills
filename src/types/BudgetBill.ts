@@ -8,7 +8,7 @@ export default interface BudgetBill {
   total: number
   productType?: string
   product?: string
-  prise?: number
+  amount: number
   comment?: string
 }
 
@@ -25,7 +25,7 @@ export const mapJsonToBudgetBills = (json: any): BudgetBill[] => {
       total: bill[headers.total],
       productType: bill[headers.productType],
       product: bill[headers.product],
-      prise: bill[headers.prise],
+      amount: bill[headers.amount],
       comment: bill[headers.comment],
     }
     return budgetBill
@@ -45,7 +45,7 @@ export const mapBudgetBillsToJson = (bills: BudgetBill[]): any[] => {
     jsonBill[headers.total] = bill.total
     jsonBill[headers.productType] = bill.productType
     jsonBill[headers.product] = bill.product
-    jsonBill[headers.prise] = bill.prise
+    jsonBill[headers.amount] = bill.amount
     jsonBill[headers.comment] = bill.comment
     return jsonBill
   })
@@ -53,7 +53,12 @@ export const mapBudgetBillsToJson = (bills: BudgetBill[]): any[] => {
 
 const isValidBudgetBill = (bill: any): boolean => {
   const headers = txt().budget.headers
-  return bill[headers.date] && bill[headers.no] && bill[headers.total]
+  return (
+    bill[headers.date] &&
+    bill[headers.no] &&
+    bill[headers.total] &&
+    bill[headers.amount]
+  )
 }
 
 const convertExcelDateNumberToDate = (excelDate: number): Date => {

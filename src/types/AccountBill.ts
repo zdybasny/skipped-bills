@@ -2,10 +2,9 @@ import txt from "../locale"
 
 export default interface AccountBill {
   date: Date
-  prise: number
+  amount: number
   shop?: string
   title: string
-  status: string
 }
 
 export const mapJsonToAccountBills = (json: any): AccountBill[] => {
@@ -14,9 +13,8 @@ export const mapJsonToAccountBills = (json: any): AccountBill[] => {
     validateAccountBillJson(bill)
     const accountBill: AccountBill = {
       date: convertDate(bill[headers.date]),
-      prise: (bill[headers.prise] as number) * -1,
+      amount: (bill[headers.amount] as number) * -1,
       title: bill[headers.title],
-      status: bill[headers.status],
       shop: bill[headers.shop],
     }
     return accountBill
@@ -27,9 +25,8 @@ const validateAccountBillJson = (bill: any) => {
   const headers = txt().account.headers
   const requireFields = [
     headers.date,
-    headers.prise,
+    headers.amount,
     headers.title,
-    headers.status,
   ]
   validateBill(bill, requireFields)
 }
