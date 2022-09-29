@@ -64,7 +64,7 @@ describe(`AccountBill.ts`, () => {
       input = [
         {
           Status: `ok`,
-          Date: `2022-03-24`,
+          "Transfer date": `2022-03-24`,
           Title: `some tittle`,
           Amount: 25,
         },

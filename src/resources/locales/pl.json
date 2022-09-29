@@ -1,12 +1,24 @@
 {
   "account": {
-    "sheetName": "tranzakcje bankowe",
+    "sheetName": "Lista transakcji",
     "headers": {
       "shop": "Sklep",
       "account": "Konto",
       "date": "Data waluty",
       "title": "tytuł",
-      "amount": "Kwota"
+      "amount": "Kwota",
+      "_rachunek_nadawcy": "Rachunek nadawcy",
+      "_nazwa_nadawcy": "Nazwa nadawcy",
+      "_adres_nadawcy": "Adres nadawcy",
+      "_rachunek_odbiorcy": "Rachunek odbiorcy",
+      "_nazwa_odbiorcy": "Nazwa odbiorcy",
+      "_adres_odbiorcy": "Adres odbiorcy",
+      "_opis_transakcji": "Opis transakcji",
+      "_N": "",
+      "_O": "",
+      "_P": "",
+      "_Q": "",
+      "_R": ""
     }
   },
   "budget": {

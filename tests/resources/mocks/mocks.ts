@@ -12,7 +12,7 @@ export const accountBillsJson = (): any[] => {
     {
       Shop: "abc",
       Account: "account A",
-      Date: "2022-01-02",
+      "Transfer date": "2022-01-02",
       "Transaction type": "Card payment",
       Amount: -20.48,
       Currency: "PLN",
@@ -21,7 +21,7 @@ export const accountBillsJson = (): any[] => {
     {
       Shop: "abc",
       Account: "account A",
-      Date: "2022-01-02",
+      "Transfer date": "2022-01-02",
       "Transaction type": "Card payment",
       Amount: -29.95,
       Currency: "PLN",
@@ -30,7 +30,7 @@ export const accountBillsJson = (): any[] => {
     {
       Shop: "little shop",
       Account: "account B",
-      Date: 44566,
+      "Transfer date": 44566,
       "Transaction type": "Card payment",
       Amount: -71.58,
       Currency: "PLN",

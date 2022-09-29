@@ -30,19 +30,7 @@ const main = async () => {
 
   const budget = new Budget(accountBills, budgetBills)
 
-  const start = new Date().getTime()
-
-  // Run some code..
-
-  // budget.filterDuplicatedBudgetBills()
-  console.log(
-    `\nCount of unique budget bills: ${budget[`accountBills`].length}`
-  )
-  // writeToJson(`${paths.budgetBills}.unique`, budget[`accountBills`])
-
   budget.filterAccountBillsNotInBudgetBills()
-  let elapsed = new Date().getTime() - start
-  console.log(`\nXXXX: Elapsed time: ${elapsed} ms`)
   console.log(`\nCount of missed bills: ${budget[`accountBills`].length}`)
   writeToJson(`${paths.accountBills}.filtered`, budget[`accountBills`])
 

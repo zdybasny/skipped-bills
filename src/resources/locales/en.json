@@ -4,7 +4,7 @@
     "headers": {
       "shop": "Shop",
       "account": "Account",
-      "date": "Date",
+      "date": "Transfer date",
       "title": "Title",
       "amount": "Amount"
     }
