@@ -1,0 +1,30 @@
+{
+    "name": "determine shop type",
+    "description": "if any of 'Title` and 'Q' columns contain given <withValue> then 'Shop Type' is defined",
+    "collectionWay": "any",
+    "columns": [
+        "Title",
+        "Q"
+    ],
+    "elementWay": "contains",
+    "conditions": [
+        {
+            "withValue": "abc",
+            "outputCells": {
+                "Shop Type": "supermarket"
+            }
+        },
+        {
+            "withValue": "the bank",
+            "outputCells": {
+                "Shop Type": "bank"
+            }
+        },
+        {
+            "withValue": "new old car",
+            "outputCells": {
+                "Shop Type": "mechanic"
+            }
+        }
+    ]
+}

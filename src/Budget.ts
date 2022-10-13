@@ -1,6 +1,8 @@
 import AccountBill from "./types/AccountBill"
 import BudgetBill from "./types/BudgetBill"
 import txt from "./locale"
+import { applyRulesToAccountBills } from "./rulesHandler"
+import AccountBillRule from "./types/AccountBillRule"
 
 export class Budget {
   constructor(
@@ -20,6 +22,13 @@ export class Budget {
       return !isInBudgetBills
     })
     this.accountBills = accountBillsFiltered
+  }
+
+  applyRulesToAccountBills = (accountBillRules: AccountBillRule[]) => {
+    this.accountBills = applyRulesToAccountBills(
+      this.accountBills,
+      accountBillRules
+    )
   }
 
   mapAccountBillsToBudgetBills = (): BudgetBill[] => {

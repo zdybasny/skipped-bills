@@ -2,9 +2,13 @@ import txt, { setLocale } from "../src/locale"
 
 import { expect } from "chai"
 import { assert } from "console"
-import { stub } from "sinon"
+import { restore } from "sinon"
 
 describe(`locale.ts`, () => {
+  beforeEach(() => {
+    restore()
+  })
+
   describe(`txt()`, () => {
     it(`should be defined in default language (en)`, () => {
       // given
@@ -22,15 +26,17 @@ describe(`locale.ts`, () => {
       setLocale(`en`)
     })
 
-    it(`should reload locale for given language`, () => {
+    it(`should reload locale for given language`, function () {
+      this.timeout(40000)
       // given
       assert(txt().budget.headers.no === `no`)
 
       // when
       setLocale(`pl`)
-      const result = txt()
+      // const result = txt()
 
       // then
+      const result = txt()
       expect(txt().budget.headers.no).is.equal(`l.p.`)
     })
 

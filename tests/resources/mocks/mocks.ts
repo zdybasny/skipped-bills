@@ -1,10 +1,12 @@
 import AccountBill from "../../../src/types/AccountBill"
 import BudgetBill from "../../../src/types/BudgetBill"
+import AccountBillRule, { operator } from "../../../src/types/AccountBillRule"
 
 export const paths = {
   accountBills: `./tests/resources/xlsx/accountBills.xlsx`,
   budgetBills: `./tests/resources/xlsx/budgetBills.xlsx`,
   budgetMissedBills: `./tests/resources/xlsx/budgetMissedBills.xlsx`,
+  rules: `./tests/resources/rules/rules.json`,
 } as const
 
 export const accountBillsJson = (): any[] => {
@@ -16,7 +18,7 @@ export const accountBillsJson = (): any[] => {
       "Transaction type": "Card payment",
       Amount: -20.48,
       Currency: "PLN",
-      Title: "Title: 0090729",
+      Title: "Title: 0090729 in ABC",
     },
     {
       Shop: "abc",
@@ -25,7 +27,7 @@ export const accountBillsJson = (): any[] => {
       "Transaction type": "Card payment",
       Amount: -29.95,
       Currency: "PLN",
-      Title: "Title: 0090744",
+      Title: "Title: 0090744 in ABC",
     },
     {
       Shop: "little shop",
@@ -34,7 +36,7 @@ export const accountBillsJson = (): any[] => {
       "Transaction type": "Card payment",
       Amount: -71.58,
       Currency: "PLN",
-      Title: "Title: 00091840",
+      Title: "Title: 00091840 in Little Shop",
     },
   ]
 }
@@ -69,7 +71,7 @@ export const budgetBillsJson = (): any[] => {
     {
       date: 44563,
       no: 1,
-      "shop type": "supermaket",
+      "shop type": "supermarket",
       shop: "abc",
       total: 29.950000000000003,
       "product type": "-",
@@ -79,7 +81,7 @@ export const budgetBillsJson = (): any[] => {
     {
       date: 44563,
       no: 1,
-      "shop type": "supermaket",
+      "shop type": "supermarket",
       shop: "abc",
       total: 29.950000000000003,
       "product type": "-",
@@ -89,7 +91,7 @@ export const budgetBillsJson = (): any[] => {
     {
       date: 44563,
       no: 1,
-      "shop type": "supermaket",
+      "shop type": "supermarket",
       shop: "abc",
       total: 29.950000000000003,
       "product type": "-",
@@ -146,7 +148,7 @@ export const budgetBills = (): BudgetBill[] => {
     {
       date: new Date("2022-01-02T00:00:00.000Z"),
       no: 1,
-      shopType: "supermaket",
+      shopType: "supermarket",
       shop: "abc",
       total: 29.950000000000003,
       productType: "-",
@@ -156,7 +158,7 @@ export const budgetBills = (): BudgetBill[] => {
     {
       date: new Date("2022-01-02T00:00:00.000Z"),
       no: 1,
-      shopType: "supermaket",
+      shopType: "supermarket",
       shop: "abc",
       total: 29.950000000000003,
       productType: "-",
@@ -166,7 +168,7 @@ export const budgetBills = (): BudgetBill[] => {
     {
       date: new Date("2022-01-02T00:00:00.000Z"),
       no: 1,
-      shopType: "supermaket",
+      shopType: "supermarket",
       shop: "abc",
       total: 29.950000000000003,
       productType: "-",
@@ -214,3 +216,36 @@ export const budgetBills = (): BudgetBill[] => {
     },
   ]
 }
+
+export const rules = {
+  "match supermarket": [
+    {
+      columns: ["Title"],
+      collectionOperator: operator.collection.Any[0],
+      elementOperator: operator.element.Contains[0],
+      conditions: [
+        {
+          withValue: "abc",
+          outputCells: {
+            Shop: "abc",
+            "Shop Type": "supermarket",
+          },
+        },
+        {
+          withValue: "the bank",
+          outputCells: {
+            Shop: "the bank",
+            "Shop Type": "bank",
+          },
+        },
+        {
+          withValue: "new old car",
+          outputCells: {
+            Shop: "new old car",
+            "Shop Type": "mechanic",
+          },
+        },
+      ],
+    },
+  ] as AccountBillRule[],
+} as const

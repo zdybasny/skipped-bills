@@ -1,6 +1,6 @@
 import { afterEach, describe } from "mocha"
 import { expect } from "chai"
-import Sinon, { stub } from "sinon"
+import { restore, stub } from "sinon"
 import addContext from "mochawesome/addContext"
 import * as mocks from "./resources/mocks/mocks"
 
@@ -11,8 +11,10 @@ import { exec } from "child_process"
 import fs from "fs"
 
 describe(`xlsxHandler.ts`, () => {
+  beforeEach(function () {
+    restore()
+  })
   afterEach(() => {
-    Sinon.restore()
     globals.paths.accountBills = mocks.paths.accountBills
     globals.paths.budgetBills = mocks.paths.budgetBills
     globals.paths.budgetSkippedBills = mocks.paths.budgetMissedBills

@@ -6,13 +6,14 @@ import BudgetBill from "../src/types/BudgetBill"
 
 import { afterEach, describe } from "mocha"
 import { assert, expect } from "chai"
-import { stub } from "sinon"
+import { restore } from "sinon"
 import addContext from "mochawesome/addContext"
 import * as mocks from "./resources/mocks/mocks"
 
 let budget: Budget
 describe(`Budget.ts`, () => {
   beforeEach(function () {
+    restore()
     budget = new Budget(mocks.accountBills(), mocks.budgetBills())
   })
   afterEach(function () {

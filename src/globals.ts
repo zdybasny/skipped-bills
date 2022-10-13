@@ -2,6 +2,7 @@ export const paths = {
   accountBills: `./accountBills.xlsx`,
   budgetBills: `./budgetBills.xlsx`,
   budgetSkippedBills: `./budgetSkippedBills.xlsx`,
+  rules: `./resources/rules.json`,
 }
 
 export const defaultLanguage = `en`

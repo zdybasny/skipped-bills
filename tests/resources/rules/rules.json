@@ -1,0 +1,52 @@
+[
+    {
+        "name": "match supermarket",
+        "description": "if any of 'Title` and 'Q' columns contain given <withValue> then 'Shop Type' is defined",
+        "collectionWay": "any",
+        "columns": [
+            "Title"
+        ],
+        "elementWay": "contains",
+        "conditions": [
+            {
+                "withValue": "abc",
+                "outputCells": {
+                    "Shop": "abc",
+                    "Shop Type": "supermarket"
+                }
+            },
+            {
+                "withValue": "the bank",
+                "outputCells": {
+                    "Shop": "the bank",
+                    "Shop Type": "bank"
+                }
+            },
+            {
+                "withValue": "new old car",
+                "outputCells": {
+                    "Shop": "new old car",
+                    "Shop Type": "mechanic"
+                }
+            }
+        ]
+    },
+    {
+        "name": "not existing column",
+        "collectionWay": "any",
+        "columns": [
+            "Title",
+            "Q"
+        ],
+        "elementWay": "contains",
+        "conditions": [
+            {
+                "withValue": "new old car",
+                "outputCells": {
+                    "Shop": "new old car",
+                    "Shop Type": "mechanic"
+                }
+            }
+        ]
+    }
+]
